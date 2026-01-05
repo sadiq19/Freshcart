@@ -1,5 +1,3 @@
-Freshcart
-
 Freshcart is a frontend-focused e-commerce project built with React and TypeScript.
 
 ## Features
