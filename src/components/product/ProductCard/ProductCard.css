@@ -1,0 +1,202 @@
+.product-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.product-card__link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* 
+  IMAGE:
+  - Taller aspect ratio for image dominance.
+  - Rounded corners on top for card feel.
+*/
+.product-card__image-wrapper {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-bg);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    overflow: hidden;
+}
+
+.product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+}
+
+.product-card:hover .product-card__image {
+    transform: scale(1.03);
+}
+
+/* BADGES */
+.product-card__badge {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--radius-sm);
+    z-index: 1;
+    backdrop-filter: blur(4px);
+}
+
+.product-card__badge--organic {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.product-card__badge--local {
+    top: auto;
+    bottom: var(--space-sm);
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.product-card__badge--out-of-stock {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--color-surface);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* 
+  CONTENT:
+  - Padding for spacing.
+  - Min-height for consistent card heights.
+*/
+.product-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-md);
+    padding-right: calc(var(--space-md) + 44px);
+    /* Space for add button */
+    min-height: 100px;
+}
+
+/* 
+  TYPOGRAPHY HIERARCHY: Price -> Name -> Unit 
+*/
+
+/* PRICE: Big and bold */
+.product-card__price {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    line-height: var(--line-height-tight);
+}
+
+/* NAME: Calm and readable, clamped to 2 lines */
+.product-card__name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-xs);
+
+    /* Enforce 2 lines of text to prevent height changes */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-card__link:hover .product-card__name {
+    color: var(--color-primary);
+}
+
+/* UNIT: Secondary info */
+.product-card__unit {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-normal);
+    /* Explicitly normal weight */
+}
+
+
+/* 
+  ADD BUTTON:
+  - Circular, filled with primary color.
+  - Absolutely positioned to the bottom right of the card.
+  - Visible by default, with hover effect.
+*/
+.product-card__add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border: none;
+    border-radius: var(--radius-full);
+
+    position: absolute;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    z-index: 2;
+
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 2px 8px rgba(45, 106, 79, 0.3);
+}
+
+.product-card__add-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.product-card__add-btn:disabled {
+    background-color: var(--color-border);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
+
+
+/* Button hover effects */
+.product-card__add-btn:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.4);
+}
+
+.product-card__add-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+/* Focus visible for accessibility */
+.product-card__add-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Remove old/unused selectors to prevent side-effects */
+.product-card__category,
+.product-card__footer,
+.product-card__pricing {
+    display: none;
+}

@@ -1,0 +1,25 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--grid-gap);
+    row-gap: var(--space-2xl); /* 48px, more vertical space */
+}
+
+@media (min-width: 640px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.product-grid__state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}

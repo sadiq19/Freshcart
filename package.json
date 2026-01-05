@@ -1,0 +1,39 @@
+{
+    "name": "freshcart-frontend",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@types/react-router-dom": "^5.3.3",
+        "@types/uuid": "^10.0.0",
+        "date-fns": "^4.1.0",
+        "lucide-react": "^0.562.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "react-router-dom": "^7.11.0",
+        "uuid": "^13.0.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.2",
+        "@types/node": "^22.10.2",
+        "@types/react": "^18.3.12",
+        "@types/react-dom": "^18.3.1",
+        "@typescript-eslint/eslint-plugin": "^8.51.0",
+        "@typescript-eslint/parser": "^8.51.0",
+        "@vitejs/plugin-react": "^4.3.4",
+        "eslint": "^9.39.2",
+        "eslint-plugin-react": "^7.37.5",
+        "eslint-plugin-react-hooks": "^7.0.1",
+        "eslint-plugin-react-refresh": "^0.4.26",
+        "globals": "^17.0.0",
+        "typescript": "~5.6.2",
+        "typescript-eslint": "^8.51.0",
+        "vite": "^6.0.3"
+    }
+}

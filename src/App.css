@@ -1,0 +1,29 @@
+.main {
+    flex: 1;
+}
+
+.products-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl); /* Increased gap for sections */
+    padding-block: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+    .products-section {
+        padding-block: var(--space-3xl);
+    }
+}
+
+.products-section__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-sm); /* Add some space below all titles */
+}
+
+/* Style for the titles in the default, multi-section view */
+.editorial-section .products-section__title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-medium);
+}

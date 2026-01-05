@@ -1,0 +1,59 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+#root {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-md);
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding-inline: var(--space-lg);
+    }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+::selection {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+}

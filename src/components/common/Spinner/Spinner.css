@@ -1,0 +1,41 @@
+.spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner--sm {
+    --spinner-size: 20px;
+}
+
+.spinner--md {
+    --spinner-size: 32px;
+}
+
+.spinner--lg {
+    --spinner-size: 48px;
+}
+
+.spinner__icon {
+    width: var(--spinner-size);
+    height: var(--spinner-size);
+    animation: spin 1s linear infinite;
+}
+
+.spinner__track {
+    opacity: 0.2;
+}
+
+.spinner__arc {
+    color: var(--color-primary);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
