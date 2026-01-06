@@ -1,0 +1,2 @@
+export { MealCard } from './MealCard';
+

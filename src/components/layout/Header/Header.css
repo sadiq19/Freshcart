@@ -28,32 +28,19 @@
 .header__logo {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
     flex-shrink: 0;
-    color: var(--color-primary);
     transition: opacity var(--transition-fast);
 }
 
 .header__logo:hover {
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .header__logo-img {
-    height: 36px;
+    height: 40px;
     width: auto;
     object-fit: contain;
-}
-
-.header__logo-text {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-primary);
-}
-
-@media (max-width: 767px) {
-    .header__logo-text {
-        display: none;
-    }
+    display: block;
 }
 
 /* Search */

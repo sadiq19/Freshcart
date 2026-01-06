@@ -1,0 +1,72 @@
+/* Home Page Specific Styles */
+
+/* Inspiration Meals Section */
+.home-meals-section {
+    padding: var(--space-3xl) 0 var(--space-2xl);
+}
+
+.home-section__title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .home-section__title {
+        font-size: var(--font-size-3xl);
+        text-align: left;
+    }
+}
+
+.home-meals-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+}
+
+@media (min-width: 640px) {
+    .home-meals-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .home-meals-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Improved spacing for product sections */
+.products-section {
+    padding-block: var(--space-2xl);
+}
+
+@media (min-width: 768px) {
+    .products-section {
+        padding-block: var(--space-3xl);
+    }
+}
+
+.editorial-section {
+    margin-bottom: var(--space-3xl);
+}
+
+.editorial-section:last-child {
+    margin-bottom: 0;
+}
+
+.products-section__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+    .products-section__title {
+        font-size: var(--font-size-2xl);
+    }
+}

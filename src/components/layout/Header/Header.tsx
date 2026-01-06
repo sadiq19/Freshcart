@@ -64,11 +64,10 @@ export function Header() {
                     {/* Logo */}
                     <Link to="/" className="header__logo" aria-label="FreshCart hjem">
                         <img
-                            src="/Gemini_Generated_Image_s7e481s7e481s7e4.png"
+                            src="/freshcart-Logo.jpg"
                             alt="FreshCart logo"
                             className="header__logo-img"
                         />
-                        <span className="header__logo-text">FreshCart</span>
                     </Link>
 
                     {/* Search */}

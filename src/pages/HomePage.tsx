@@ -1,10 +1,13 @@
 import { useState, useMemo } from 'react';
 import { Hero } from '../components/home/Hero';
 import { CategoryNav } from '../components/home/CategoryNav';
+import { MealCard } from '../components/home/MealCards';
 import { ProductGrid } from '../components/product/ProductGrid';
 import { useCart } from '../state/CartContext';
 import { mockProducts, PRODUCT_CATEGORIES } from '../mocks/products';
+import { inspirationMeals } from '../mocks/meals';
 import type { Product } from '../types/product';
+import './HomePage.css';
 
 const CATEGORIES = ['Alle', ...PRODUCT_CATEGORIES.slice(0, 8)]; // Show first 8 categories plus 'All'
 
@@ -56,12 +59,31 @@ export function HomePage() {
         <>
             <Hero />
             <div className="container">
+                {/* Inspiration Meal Cards Section */}
+                {!searchQuery && activeCategory === 'Alle' && (
+                    <section className="home-meals-section">
+                        <h2 className="home-section__title">Inspirasjon til middag</h2>
+                        <div className="home-meals-grid">
+                            {inspirationMeals.map((meal) => (
+                                <MealCard
+                                    key={meal.id}
+                                    id={meal.id}
+                                    title={meal.title}
+                                    description={meal.description}
+                                    image={meal.image}
+                                    link={meal.link}
+                                />
+                            ))}
+                        </div>
+                    </section>
+                )}
+
                 <CategoryNav
                     categories={CATEGORIES}
                     activeCategory={activeCategory}
                     onCategorySelect={handleCategorySelect}
                 />
-                <section className="products-section">
+                <section id="products" className="products-section">
                     {searchQuery || activeCategory !== 'Alle' ? (
                         <>
                             <h2 className="products-section__title">

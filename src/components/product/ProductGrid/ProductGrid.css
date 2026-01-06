@@ -2,7 +2,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: var(--grid-gap);
-    row-gap: var(--space-2xl); /* 48px, more vertical space */
+    row-gap: var(--space-2xl);
+    animation: fadeIn var(--transition-normal) ease-out;
 }
 
 @media (min-width: 640px) {

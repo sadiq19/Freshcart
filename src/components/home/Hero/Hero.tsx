@@ -23,6 +23,11 @@ export function Hero({
             <div className="hero__content">
                 <h1 className="hero__title">{title}</h1>
                 <p className="hero__subtitle">{subtitle}</p>
+                <div className="hero__cta">
+                    <a href="#products" className="hero__button">
+                        Start å handle
+                    </a>
+                </div>
             </div>
         </section>
     );
