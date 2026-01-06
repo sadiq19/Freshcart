@@ -15,6 +15,16 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
         maximumFractionDigits: 2,
     }).format(product.price);
 
+    // Calculate unit price for display (price per kg/l when applicable)
+    const getUnitPrice = () => {
+        if (product.unit.includes('kg') || product.unit.includes('liter') || product.unit.includes('l')) {
+            return `${formattedPrice}/${product.unit.includes('kg') ? 'kg' : product.unit.includes('liter') ? 'l' : 'l'}`;
+        }
+        return null;
+    };
+
+    const unitPrice = getUnitPrice();
+
     const handleAddToCart = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -23,7 +33,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
 
     return (
         <article className="product-card">
-            <Link to={`/products/${product.id}`} className="product-card__link">
+            <Link to={`/product/${product.id}`} className="product-card__link">
                 <div className="product-card__image-wrapper">
                     <img
                         src={product.image}
@@ -49,7 +59,12 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
                 </div>
 
                 <div className="product-card__content">
-                    <span className="product-card__price">{formattedPrice}</span>
+                    <div className="product-card__pricing">
+                        <span className="product-card__price">{formattedPrice}</span>
+                        {unitPrice && (
+                            <span className="product-card__unit-price">{unitPrice}</span>
+                        )}
+                    </div>
                     <h3 className="product-card__name">{product.name}</h3>
                     <span className="product-card__unit">{product.unit}</span>
                 </div>

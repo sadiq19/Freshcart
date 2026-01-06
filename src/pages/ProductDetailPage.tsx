@@ -67,7 +67,12 @@ export function ProductDetailPage() {
                 <nav className="breadcrumb" aria-label="Brødsmuler">
                     <Link to="/">Hjem</Link>
                     <span className="breadcrumb__separator">/</span>
-                    <Link to={`/?category=${encodeURIComponent(product.category)}`}>
+                    <Link to="/products">Alle produkter</Link>
+                    <span className="breadcrumb__separator">/</span>
+                    <Link to={`/products/${product.category.toLowerCase()
+                        .replace(/\s+/g, '-')
+                        .replace(/[åä]/g, 'a')
+                        .replace(/ø/g, 'o')}`}>
                         {product.category}
                     </Link>
                     <span className="breadcrumb__separator">/</span>

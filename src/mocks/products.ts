@@ -27,7 +27,7 @@ export const mockProducts: Product[] = [
         name: 'Økologiske Bananer',
         price: 29.9,
         unit: 'kg',
-        image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop&bg=white',
         category: 'Frukt og grønt',
         subcategory: 'Frukt',
         inStock: true,
@@ -57,7 +57,7 @@ export const mockProducts: Product[] = [
         name: 'Norske Gulrøtter',
         price: 24.9,
         unit: 'kg',
-        image: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400&h=400&fit=crop&bg=white',
         category: 'Frukt og grønt',
         subcategory: 'Grønnsaker',
         inStock: true,
@@ -88,7 +88,7 @@ export const mockProducts: Product[] = [
         name: 'Ferske Avokadoer',
         price: 39.9,
         unit: '2 stk',
-        image: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=400&h=400&fit=crop&bg=white',
         category: 'Frukt og grønt',
         subcategory: 'Frukt',
         inStock: true,
@@ -112,14 +112,14 @@ export const mockProducts: Product[] = [
         },
         tags: ['sunt fett', 'fiber'],
     },
-    
+
     // Dairy Products
     {
         id: '4',
         name: 'Helmelk 3,9%',
         price: 24.9,
         unit: '1 liter',
-        image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=400&fit=crop&bg=white',
         category: 'Meieri, ost og egg',
         subcategory: 'Melk',
         inStock: true,
@@ -152,7 +152,7 @@ export const mockProducts: Product[] = [
         name: 'Frittgående Høns Egg',
         price: 49.9,
         unit: '12 stk',
-        image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&h=400&fit=crop&bg=white',
         category: 'Meieri, ost og egg',
         subcategory: 'Egg',
         inStock: true,
@@ -179,14 +179,14 @@ export const mockProducts: Product[] = [
         },
         tags: ['frittgående', 'dyrevelferd', 'protein'],
     },
-    
+
     // Bakery
     {
         id: '6',
         name: 'Håndlaget Surdeigsbrød',
         price: 45.0,
         unit: '1 stk',
-        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=400&fit=crop&bg=white',
         category: 'Bakeri og konditori',
         subcategory: 'Brød',
         inStock: true,
@@ -213,14 +213,14 @@ export const mockProducts: Product[] = [
         },
         tags: ['håndlaget', 'surdeig', 'mindre matsvinn'],
     },
-    
+
     // Fish and Seafood
     {
         id: '7',
         name: 'Norsk Laks Filet',
         price: 189.0,
         unit: 'kg',
-        image: 'https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=400&h=400&fit=crop&bg=white',
         category: 'Fisk og sjømat',
         subcategory: 'Laks',
         inStock: true,
@@ -251,14 +251,14 @@ export const mockProducts: Product[] = [
             discountPercentage: 10,
         },
     },
-    
+
     // Plant-based
     {
         id: '8',
         name: 'Havre Melk Original',
         price: 32.9,
         unit: '1 liter',
-        image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=400&fit=crop&bg=white',
         category: 'Plantebasert',
         subcategory: 'Melkealternativer',
         inStock: true,
@@ -285,14 +285,14 @@ export const mockProducts: Product[] = [
         },
         tags: ['plantebasert', 'vegan', 'laktosefri'],
     },
-    
+
     // Snacks and Chocolate
     {
         id: '9',
         name: 'Mørk Sjokolade 70%',
         price: 39.9,
         unit: '100g',
-        image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400&h=400&fit=crop&bg=white',
         category: 'Sjokolade, snacks og godteri',
         subcategory: 'Sjokolade',
         inStock: true,
@@ -318,14 +318,14 @@ export const mockProducts: Product[] = [
         },
         tags: ['fairtrade', 'antioksidanter'],
     },
-    
+
     // Beverages
     {
         id: '10',
         name: 'Norsk Mineralvann',
         price: 19.9,
         unit: '1,5 liter',
-        image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=300&fit=crop',
+        image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop&bg=white',
         category: 'Drikke',
         subcategory: 'Vann',
         inStock: true,
@@ -353,5 +353,158 @@ export const mockProducts: Product[] = [
             minQuantity: 6,
             discountPercentage: 15,
         },
+    },
+
+    // More Fruits and Vegetables
+    {
+        id: '11',
+        name: 'Røde Epler',
+        price: 34.9,
+        unit: 'kg',
+        image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=400&fit=crop&bg=white',
+        category: 'Frukt og grønt',
+        subcategory: 'Frukt',
+        inStock: true,
+        description: 'Krispe og søte røde epler',
+        origin: 'Norge',
+        isLocal: true,
+        temperatureZone: 'chilled',
+        sustainability: {
+            carbonFootprint: 0.2,
+            sustainabilityScore: 1,
+            packaging: 'minimal',
+            locallySourced: true,
+        },
+        tags: ['norsk', 'fiber', 'vitaminer'],
+    },
+    {
+        id: '12',
+        name: 'Ferske Tomater',
+        price: 49.9,
+        unit: 'kg',
+        image: 'https://images.unsplash.com/photo-1546470427-e26264be0b01?w=400&h=400&fit=crop&bg=white',
+        category: 'Frukt og grønt',
+        subcategory: 'Grønnsaker',
+        inStock: true,
+        description: 'Modne og saftige tomater',
+        origin: 'Norge',
+        isLocal: true,
+        temperatureZone: 'ambient',
+        sustainability: {
+            carbonFootprint: 0.4,
+            sustainabilityScore: 1,
+            packaging: 'minimal',
+            locallySourced: true,
+        },
+        tags: ['norsk', 'fersk', 'lykopen'],
+    },
+
+    // More Dairy
+    {
+        id: '13',
+        name: 'Gulost',
+        price: 89.9,
+        unit: 'kg',
+        image: 'https://images.unsplash.com/photo-1618164436269-66d8c54cf7e0?w=400&h=400&fit=crop&bg=white',
+        category: 'Meieri, ost og egg',
+        subcategory: 'Ost',
+        inStock: true,
+        description: 'Klassisk norsk gulost',
+        origin: 'Norge',
+        isLocal: true,
+        temperatureZone: 'chilled',
+        sustainability: {
+            carbonFootprint: 2.1,
+            sustainabilityScore: 3,
+            packaging: 'recyclable',
+            locallySourced: true,
+        },
+        tags: ['norsk', 'protein', 'kalsium'],
+    },
+    {
+        id: '14',
+        name: 'Yoghurt Naturell',
+        price: 29.9,
+        unit: '500g',
+        image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=400&fit=crop&bg=white',
+        category: 'Meieri, ost og egg',
+        subcategory: 'Yoghurt',
+        inStock: true,
+        description: 'Kremet yoghurt uten tilsatt sukker',
+        origin: 'Norge',
+        isLocal: true,
+        temperatureZone: 'chilled',
+        sustainability: {
+            carbonFootprint: 1.5,
+            sustainabilityScore: 2,
+            packaging: 'recyclable',
+            locallySourced: true,
+        },
+        tags: ['norsk', 'protein', 'probiotika'],
+    },
+
+    // More Bakery
+    {
+        id: '15',
+        name: 'Kneippbrød',
+        price: 32.9,
+        unit: '500g',
+        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=400&fit=crop&bg=white',
+        category: 'Bakeri og konditori',
+        subcategory: 'Brød',
+        inStock: true,
+        description: 'Klassisk kneippbrød med fullkorn',
+        temperatureZone: 'ambient',
+        sustainability: {
+            carbonFootprint: 0.6,
+            sustainabilityScore: 2,
+            packaging: 'biodegradable',
+            locallySourced: true,
+        },
+        tags: ['fullkorn', 'fiber'],
+    },
+
+    // More Plant-based
+    {
+        id: '16',
+        name: 'Mandelmelk',
+        price: 36.9,
+        unit: '1 liter',
+        image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=400&fit=crop&bg=white',
+        category: 'Plantebasert',
+        subcategory: 'Melkealternativer',
+        inStock: true,
+        description: 'Kremet mandelmelk uten tilsatt sukker',
+        temperatureZone: 'chilled',
+        sustainability: {
+            carbonFootprint: 1.1,
+            sustainabilityScore: 2,
+            packaging: 'recyclable',
+            locallySourced: false,
+        },
+        tags: ['plantebasert', 'vegan', 'laktosefri'],
+    },
+
+    // More Fish
+    {
+        id: '17',
+        name: 'Torskefilet',
+        price: 149.0,
+        unit: 'kg',
+        image: 'https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=400&h=400&fit=crop&bg=white',
+        category: 'Fisk og sjømat',
+        subcategory: 'Hvit fisk',
+        inStock: true,
+        description: 'Fersk torskefilet fra norske farvann',
+        origin: 'Norge',
+        isLocal: true,
+        temperatureZone: 'chilled',
+        sustainability: {
+            carbonFootprint: 2.8,
+            sustainabilityScore: 2,
+            packaging: 'recyclable',
+            locallySourced: true,
+        },
+        tags: ['norsk', 'protein', 'omega-3'],
     },
 ];
