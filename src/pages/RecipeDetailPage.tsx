@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Clock, Users, Zap, ArrowLeft, ShoppingCart, Check } from 'lucide-react';
+import { Clock, Users, Zap, ArrowLeft, ShoppingCart, Check, Leaf } from 'lucide-react';
 import { mockRecipes } from '../mocks/recipes';
 import { mockProducts } from '../mocks/products';
 import { useCart } from '../state/CartContext';
+import './RecipeDetailPage.css';
 
 interface IngredientItemProps {
     ingredient: typeof mockRecipes[0]['ingredients'][0];
@@ -15,7 +16,7 @@ interface IngredientItemProps {
 function IngredientItem({ ingredient, servingMultiplier, onAddToCart, isInCart }: IngredientItemProps) {
     const adjustedQuantity = ingredient.quantity * servingMultiplier;
     const product = ingredient.productId ? mockProducts.find(p => p.id === ingredient.productId) : null;
-    
+
     return (
         <div className="ingredient-item">
             <div className="ingredient-info">
@@ -29,7 +30,7 @@ function IngredientItem({ ingredient, servingMultiplier, onAddToCart, isInCart }
                     </span>
                 )}
             </div>
-            
+
             {product && (
                 <div className="ingredient-product">
                     <div className="ingredient-product-info">
@@ -39,8 +40,8 @@ function IngredientItem({ ingredient, servingMultiplier, onAddToCart, isInCart }
                             <div className="ingredient-product-price">{product.price} kr/{product.unit}</div>
                         </div>
                     </div>
-                    
-                    <button 
+
+                    <button
                         className={`ingredient-add-button ${isInCart ? 'added' : ''}`}
                         onClick={onAddToCart}
                         disabled={!product.inStock}
@@ -59,9 +60,9 @@ export function RecipeDetailPage() {
     const { addToCart, items } = useCart();
     const [servings, setServings] = useState(4);
     const [activeTab, setActiveTab] = useState<'ingredients' | 'instructions'>('ingredients');
-    
+
     const recipe = mockRecipes.find(r => r.id === id);
-    
+
     if (!recipe) {
         return (
             <div className="container">
@@ -74,9 +75,9 @@ export function RecipeDetailPage() {
             </div>
         );
     }
-    
+
     const servingMultiplier = servings / recipe.servings;
-    
+
     const handleAddIngredientToCart = (ingredient: typeof recipe.ingredients[0]) => {
         if (ingredient.productId) {
             const product = mockProducts.find(p => p.id === ingredient.productId);
@@ -86,7 +87,7 @@ export function RecipeDetailPage() {
             }
         }
     };
-    
+
     const handleAddAllIngredientsToCart = () => {
         recipe.ingredients.forEach(ingredient => {
             if (ingredient.productId) {
@@ -94,21 +95,21 @@ export function RecipeDetailPage() {
             }
         });
     };
-    
+
     const isIngredientInCart = (ingredient: typeof recipe.ingredients[0]) => {
         if (!ingredient.productId) return false;
         return items.some(item => item.product.id === ingredient.productId);
     };
-    
+
     const difficultyColor = {
         easy: '#10b981',
-        medium: '#f59e0b', 
+        medium: '#f59e0b',
         hard: '#ef4444'
     }[recipe.difficulty];
-    
+
     const adjustedCalories = Math.round((recipe.nutritionalInfo?.calories || 0) * servingMultiplier);
     const adjustedCarbonFootprint = (recipe.sustainability?.carbonFootprint || 0) * servingMultiplier;
-    
+
     return (
         <div className="recipe-detail">
             <div className="container">
@@ -118,7 +119,7 @@ export function RecipeDetailPage() {
                         <ArrowLeft size={20} /> Tilbake til oppskrifter
                     </Link>
                 </div>
-                
+
                 {/* Hero Section */}
                 <div className="recipe-hero">
                     <div className="recipe-hero__image">
@@ -127,11 +128,11 @@ export function RecipeDetailPage() {
                             {recipe.difficulty === 'easy' ? 'Lett' : recipe.difficulty === 'medium' ? 'Middels' : 'Vanskelig'}
                         </div>
                     </div>
-                    
+
                     <div className="recipe-hero__content">
                         <h1 className="recipe-title">{recipe.name}</h1>
                         <p className="recipe-description">{recipe.description}</p>
-                        
+
                         <div className="recipe-meta">
                             <div className="recipe-meta__item">
                                 <Clock size={20} />
@@ -145,7 +146,7 @@ export function RecipeDetailPage() {
                                 <div>
                                     <span className="meta-label">Porsjoner</span>
                                     <div className="serving-adjuster">
-                                        <button 
+                                        <button
                                             onClick={() => setServings(Math.max(1, servings - 1))}
                                             disabled={servings <= 1}
                                         >
@@ -164,16 +165,23 @@ export function RecipeDetailPage() {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div className="recipe-sustainability">
-                            <span className="sustainability-score">🌱 CO2-avtrykk: {adjustedCarbonFootprint.toFixed(1)}kg</span>
+                            <div className="sustainability-score">
+                                <Leaf size={18} />
+                                <span>CO2-avtrykk: {adjustedCarbonFootprint.toFixed(1)}kg</span>
+                            </div>
                             <div className="sustainability-rating">
                                 {[...Array(5)].map((_, i) => (
-                                    <span key={i} className={i < (recipe.sustainability?.sustainabilityScore || 3) ? 'filled' : ''}>♥</span>
+                                    <Leaf
+                                        key={i}
+                                        size={16}
+                                        className={i < (recipe.sustainability?.sustainabilityScore || 3) ? 'filled' : ''}
+                                    />
                                 ))}
                             </div>
                         </div>
-                        
+
                         <div className="recipe-tags">
                             {recipe.tags.map(tag => (
                                 <span key={tag} className="recipe-tag">{tag}</span>
@@ -181,29 +189,29 @@ export function RecipeDetailPage() {
                         </div>
                     </div>
                 </div>
-                
+
                 {/* Content Tabs */}
                 <div className="recipe-content">
                     <div className="recipe-tabs">
-                        <button 
+                        <button
                             className={`tab ${activeTab === 'ingredients' ? 'active' : ''}`}
                             onClick={() => setActiveTab('ingredients')}
                         >
                             Ingredienser
                         </button>
-                        <button 
+                        <button
                             className={`tab ${activeTab === 'instructions' ? 'active' : ''}`}
                             onClick={() => setActiveTab('instructions')}
                         >
                             Fremgangsmåte
                         </button>
                     </div>
-                    
+
                     {activeTab === 'ingredients' && (
                         <div className="ingredients-section">
                             <div className="ingredients-header">
                                 <h2>Ingredienser for {servings} {servings === 1 ? 'porsjon' : 'porsjoner'}</h2>
-                                <button 
+                                <button
                                     className="add-all-button"
                                     onClick={handleAddAllIngredientsToCart}
                                 >
@@ -211,7 +219,7 @@ export function RecipeDetailPage() {
                                     Legg alle ingredienser i kurv
                                 </button>
                             </div>
-                            
+
                             <div className="ingredients-list">
                                 {recipe.ingredients.map((ingredient, index) => (
                                     <IngredientItem
@@ -225,7 +233,7 @@ export function RecipeDetailPage() {
                             </div>
                         </div>
                     )}
-                    
+
                     {activeTab === 'instructions' && (
                         <div className="instructions-section">
                             <h2>Fremgangsmåte</h2>

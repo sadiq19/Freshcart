@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, Users, Zap, Search } from 'lucide-react';
+import { Clock, Users, Zap, Search, Leaf } from 'lucide-react';
 import { recipeCategories, mockRecipes } from '../mocks/recipes';
 import { useCart } from '../state/CartContext';
 import { mockProducts } from '../mocks/products';
@@ -66,7 +66,7 @@ function RecipeCard({ recipe }: { recipe: typeof mockRecipes[0] }) {
 
                 {recipe.sustainability && (
                     <div className="recipe-card__sustainability">
-                        <span className="sustainability-icon">🌱</span>
+                        <Leaf size={14} className="sustainability-icon" />
                         <span className="sustainability-text">
                             {recipe.sustainability.carbonFootprint.toFixed(1)} kg CO₂
                         </span>
