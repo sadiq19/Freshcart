@@ -27,7 +27,7 @@ const DELIVERY_SLOTS = [
 ];
 
 export function CheckoutPage() {
-    const { items, totalItems, totalPrice, deliveryFee, clearCart, minimumOrderAmount } = useCart();
+    const { items, totalItems, totalPrice, deliveryFee, clearCart, minimumOrderAmount, updateQuantity, removeFromCart } = useCart();
     const { user } = useUser();
 
     const [currentStep, setCurrentStep] = useState<CheckoutStep>('cart');
@@ -205,8 +205,57 @@ export function CheckoutPage() {
                                                 <h4>{item.product.name}</h4>
                                                 <span className="checkout-item__unit">{item.product.unit}</span>
                                             </div>
-                                            <div className="checkout-item__quantity">
-                                                x{item.quantity}
+                                            <div className="checkout-item__quantity-controls">
+                                                <button
+                                                    type="button"
+                                                    className="checkout-item__qty-btn checkout-item__qty-btn--minus"
+                                                    onClick={() => {
+                                                        if (item.quantity === 1) {
+                                                            removeFromCart(item.product.id);
+                                                        } else {
+                                                            updateQuantity(item.product.id, item.quantity - 1);
+                                                        }
+                                                    }}
+                                                    aria-label={item.quantity === 1 ? 'Fjern fra kurv' : 'Reduser antall'}
+                                                >
+                                                    {item.quantity === 1 ? (
+                                                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                                            <path
+                                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                                stroke="currentColor"
+                                                                strokeWidth="2"
+                                                                fill="none"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                            />
+                                                        </svg>
+                                                    ) : (
+                                                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                                            <path
+                                                                d="M5 12h14"
+                                                                stroke="currentColor"
+                                                                strokeWidth="2"
+                                                                strokeLinecap="round"
+                                                            />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                                <span className="checkout-item__quantity-value">{item.quantity}</span>
+                                                <button
+                                                    type="button"
+                                                    className="checkout-item__qty-btn checkout-item__qty-btn--plus"
+                                                    onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                                                    aria-label="Øk antall"
+                                                >
+                                                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                                        <path
+                                                            d="M12 5v14M5 12h14"
+                                                            stroke="currentColor"
+                                                            strokeWidth="2"
+                                                            strokeLinecap="round"
+                                                        />
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div className="checkout-item__price">
                                                 {formatPrice(item.product.price * item.quantity)}

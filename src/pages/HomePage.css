@@ -49,40 +49,8 @@
     }
 }
 
-/* Improved spacing for product sections */
-.products-section {
-    padding-block: var(--space-2xl);
-}
-
-@media (min-width: 768px) {
-    .products-section {
-        padding-block: var(--space-3xl);
-    }
-}
-
-.editorial-section {
-    margin-bottom: var(--space-3xl);
-}
-
-.editorial-section:last-child {
-    margin-bottom: 0;
-}
-
 .section-header {
     margin-bottom: var(--space-xl);
-}
-
-.products-section__title {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
-    margin-bottom: var(--space-xs);
-}
-
-@media (min-width: 768px) {
-    .products-section__title {
-        font-size: var(--font-size-2xl);
-    }
 }
 
 /* Home Categories Section */
@@ -173,10 +141,4 @@
     background-color: var(--color-primary-hover);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(45, 106, 79, 0.4);
-}
-
-.products-section__subtitle {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    margin: 0;
 }

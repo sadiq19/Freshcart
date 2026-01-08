@@ -1,0 +1,123 @@
+/* Category Page */
+
+.category-page {
+    min-height: calc(100vh - var(--header-height));
+    padding: var(--space-2xl) 0 var(--space-3xl);
+    background-color: var(--color-bg);
+}
+
+/* Breadcrumb */
+.category-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.category-breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.category-breadcrumb a:hover {
+    color: var(--color-primary);
+}
+
+.breadcrumb-separator {
+    color: var(--color-border);
+}
+
+.breadcrumb-current {
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Category Header */
+.category-header {
+    margin-bottom: var(--space-2xl);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.category-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin: 0 0 var(--space-sm);
+    line-height: var(--line-height-tight);
+}
+
+@media (min-width: 768px) {
+    .category-title {
+        font-size: 3.5rem;
+    }
+}
+
+.category-description {
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+/* Products Section */
+.category-products {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.category-empty {
+    text-align: center;
+    padding: var(--space-3xl) 0;
+}
+
+.category-empty__text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+}
+
+/* Not Found */
+.category-not-found {
+    text-align: center;
+    padding: var(--space-3xl) 0;
+}
+
+.category-not-found h1 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+}
+
+.category-not-found p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+}
+
+.category-not-found__link {
+    display: inline-block;
+    padding: var(--space-md) var(--space-xl);
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    transition: background-color var(--transition-fast);
+}
+
+.category-not-found__link:hover {
+    background-color: var(--color-primary-hover);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

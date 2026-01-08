@@ -151,6 +151,24 @@
     border-bottom: 1px solid var(--color-border);
 }
 
+@media (max-width: 640px) {
+    .checkout-item {
+        grid-template-columns: 50px 1fr;
+        gap: var(--space-sm);
+    }
+
+    .checkout-item__quantity-controls {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .checkout-item__price {
+        grid-column: 2;
+        grid-row: 3;
+        margin-top: var(--space-xs);
+    }
+}
+
 .checkout-item:last-child {
     border-bottom: none;
     padding-bottom: 0;
@@ -187,10 +205,75 @@
     color: var(--color-text-muted);
 }
 
+.checkout-item__quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background-color: var(--color-bg);
+    border-radius: var(--radius-md);
+    padding: var(--space-xs);
+    border: 1px solid var(--color-border);
+}
+
+.checkout-item__qty-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.checkout-item__qty-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+}
+
+.checkout-item__qty-btn:active {
+    transform: scale(0.95);
+}
+
+.checkout-item__qty-btn--minus {
+    color: var(--color-error);
+}
+
+.checkout-item__qty-btn--minus:hover {
+    background-color: var(--color-error);
+    color: var(--color-surface);
+    border-color: var(--color-error);
+}
+
+.checkout-item__qty-btn--plus {
+    color: var(--color-primary);
+}
+
+.checkout-item__qty-btn--plus:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    border-color: var(--color-primary);
+}
+
+.checkout-item__quantity-value {
+    min-width: 32px;
+    text-align: center;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+}
+
 .checkout-item__price {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
     color: var(--color-text);
+    text-align: right;
 }
 
 /* Delivery form */
@@ -593,4 +676,3 @@
 .btn--secondary:hover {
     background-color: var(--color-border);
 }
-

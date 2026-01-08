@@ -43,7 +43,9 @@ export function Header() {
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         if (searchQuery.trim()) {
-            navigate(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+            // Navigate to products page with search query
+            // The search will be handled by the AllProductsPage or CategoryPage
+            navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
             setSearchQuery('');
         }
     };

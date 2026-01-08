@@ -32,7 +32,9 @@ dist-ssr
 
 # Build outputs
 build
+dist
 *.tsbuildinfo
+tsconfig.tsbuildinfo
 
 # Cache
 .cache
