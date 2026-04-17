@@ -43,7 +43,9 @@ export function Header() {
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         if (searchQuery.trim()) {
-            navigate(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+            // Navigate to products page with search query
+            // The search will be handled by the AllProductsPage or CategoryPage
+            navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
             setSearchQuery('');
         }
     };
@@ -62,7 +64,7 @@ export function Header() {
             <header className="header">
                 <div className="header__container">
                     {/* Logo */}
-                    <Link to="/" className="header__logo" aria-label="FreshCart hjem">
+                    <Link to="/products" className="header__logo" aria-label="FreshCart - Alle produkter">
                         <img
                             src="/freshcart-Logo.jpg"
                             alt="FreshCart logo"
@@ -100,6 +102,7 @@ export function Header() {
                     {/* Navigation */}
                     <nav className="header__nav">
                         <Link to="/" className="header__nav-link">Hjem</Link>
+                        <Link to="/products" className="header__nav-link">Produkter</Link>
                         <Link to="/recipes" className="header__nav-link">Oppskrifter</Link>
                     </nav>
 

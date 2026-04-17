@@ -1,0 +1,118 @@
+/* All Products Page */
+
+.all-products-page {
+    min-height: calc(100vh - var(--header-height));
+    padding: var(--space-3xl) 0;
+    background-color: var(--color-bg);
+}
+
+.all-products-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.all-products-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    line-height: var(--line-height-tight);
+}
+
+@media (min-width: 768px) {
+    .all-products-title {
+        font-size: 3.5rem;
+    }
+}
+
+.all-products-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--space-lg);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@media (min-width: 640px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--color-border);
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: var(--color-primary);
+}
+
+.category-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    position: relative;
+}
+
+.category-card__title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin: 0;
+    line-height: var(--line-height-tight);
+}
+
+.category-card__count {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.category-card__arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary);
+    transition: transform var(--transition-fast);
+}
+
+.category-card:hover .category-card__arrow {
+    transform: translateX(4px);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

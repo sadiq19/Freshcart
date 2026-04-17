@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import heroBg from '@/assets/hero-bg.png';
 import './Hero.css';
 
@@ -24,9 +25,9 @@ export function Hero({
                 <h1 className="hero__title">{title}</h1>
                 <p className="hero__subtitle">{subtitle}</p>
                 <div className="hero__cta">
-                    <a href="#products" className="hero__button">
+                    <Link to="/products" className="hero__button">
                         Start å handle
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

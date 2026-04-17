@@ -1,26 +1,80 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useCart } from '../state/CartContext';
-import { mockProducts } from '../mocks/products';
+import { apiService } from '../services/api';
+import { adaptApiProduct } from '../utils/productAdapter';
+import type { Product } from '../types/product';
 import { ProductGrid } from '../components/product/ProductGrid';
+import { Spinner } from '../components/common/Spinner';
 import './ProductDetailPage.css';
 
 export function ProductDetailPage() {
     const { id } = useParams<{ id: string }>();
     const { addToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
+    const [product, setProduct] = useState<Product | null>(null);
+    const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const product = mockProducts.find(p => p.id === id);
+    useEffect(() => {
+        async function fetchProduct() {
+            if (!id) return;
 
-    if (!product) {
+            try {
+                setIsLoading(true);
+                setError(null);
+
+                const apiProduct = await apiService.getProduct(id);
+                const adaptedProduct = adaptApiProduct(apiProduct);
+                setProduct(adaptedProduct);
+
+                // Fetch related products from same category
+                const related = await apiService.getProducts({
+                    category: adaptedProduct.category.toLowerCase()
+                        .replace(/\s+/g, '-')
+                        .replace(/[åä]/g, 'a')
+                        .replace(/ø/g, 'o'),
+                });
+                const adaptedRelated = related
+                    .map(adaptApiProduct)
+                    .filter(p => p.id !== adaptedProduct.id)
+                    .slice(0, 4);
+                setRelatedProducts(adaptedRelated);
+            } catch (err) {
+                console.error('Error fetching product:', err);
+                setError('Kunne ikke laste produktet. Prøv igjen senere.');
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        fetchProduct();
+    }, [id]);
+
+    if (isLoading) {
         return (
-            <div className="container">
-                <div className="product-not-found">
-                    <h1>Produkt ikke funnet</h1>
-                    <p>Beklager, vi kunne ikke finne dette produktet.</p>
-                    <Link to="/" className="product-not-found__link">
-                        Tilbake til forsiden
-                    </Link>
+            <div className="product-detail-page">
+                <div className="container">
+                    <div style={{ display: 'flex', justifyContent: 'center', padding: '4rem' }}>
+                        <Spinner size="lg" />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (error || !product) {
+        return (
+            <div className="product-detail-page">
+                <div className="container">
+                    <div className="product-not-found">
+                        <h1>Produkt ikke funnet</h1>
+                        <p>{error || 'Beklager, vi kunne ikke finne dette produktet.'}</p>
+                        <Link to="/products" className="product-not-found__link">
+                            Tilbake til produkter
+                        </Link>
+                    </div>
                 </div>
             </div>
         );
@@ -44,21 +98,8 @@ export function ProductDetailPage() {
         setQuantity(prev => Math.max(1, prev + delta));
     };
 
-    // Get related products (same category, excluding current)
-    const relatedProducts = mockProducts
-        .filter(p => p.category === product.category && p.id !== product.id)
-        .slice(0, 4);
-
-    // Sustainability score visual
-    const getSustainabilityLabel = (score: number) => {
-        if (score <= 2) return { label: 'Lavt klimaavtrykk', color: '#16a34a' };
-        if (score <= 3) return { label: 'Middels klimaavtrykk', color: '#ca8a04' };
-        return { label: 'Høyt klimaavtrykk', color: '#dc2626' };
-    };
-
-    const sustainability = product.sustainability
-        ? getSustainabilityLabel(product.sustainability.sustainabilityScore)
-        : null;
+    // Note: Sustainability data is not available from backend API yet
+    // This section will be simplified or removed if not needed
 
     return (
         <div className="product-detail-page">
@@ -67,7 +108,12 @@ export function ProductDetailPage() {
                 <nav className="breadcrumb" aria-label="Brødsmuler">
                     <Link to="/">Hjem</Link>
                     <span className="breadcrumb__separator">/</span>
-                    <Link to={`/?category=${encodeURIComponent(product.category)}`}>
+                    <Link to="/products">Alle produkter</Link>
+                    <span className="breadcrumb__separator">/</span>
+                    <Link to={`/products/${product.category.toLowerCase()
+                        .replace(/\s+/g, '-')
+                        .replace(/[åä]/g, 'a')
+                        .replace(/ø/g, 'o')}`}>
                         {product.category}
                     </Link>
                     <span className="breadcrumb__separator">/</span>
@@ -165,45 +211,6 @@ export function ProductDetailPage() {
 
                         {/* Product details accordion-like sections */}
                         <div className="product-detail__sections">
-                            {/* Sustainability info */}
-                            {product.sustainability && (
-                                <div className="product-section">
-                                    <h3 className="product-section__title">
-                                        <svg viewBox="0 0 24 24" width="20" height="20">
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor" />
-                                        </svg>
-                                        Bærekraft
-                                    </h3>
-                                    <div className="product-section__content">
-                                        <div className="sustainability-info">
-                                            <div className="sustainability-item">
-                                                <span className="sustainability-label">Klimaavtrykk:</span>
-                                                <span
-                                                    className="sustainability-value"
-                                                    style={{ color: sustainability?.color }}
-                                                >
-                                                    {product.sustainability.carbonFootprint} kg CO₂ - {sustainability?.label}
-                                                </span>
-                                            </div>
-                                            <div className="sustainability-item">
-                                                <span className="sustainability-label">Emballasje:</span>
-                                                <span className="sustainability-value">
-                                                    {product.sustainability.packaging === 'minimal' && 'Minimal'}
-                                                    {product.sustainability.packaging === 'recyclable' && 'Resirkulerbar'}
-                                                    {product.sustainability.packaging === 'biodegradable' && 'Biologisk nedbrytbar'}
-                                                    {product.sustainability.packaging === 'standard' && 'Standard'}
-                                                </span>
-                                            </div>
-                                            {product.sustainability.locallySourced && (
-                                                <div className="sustainability-item">
-                                                    <span className="sustainability-badge">🇳🇴 Lokalt produsert</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
                             {/* Nutritional info */}
                             {product.nutritionalInfo && (
                                 <div className="product-section">
@@ -259,36 +266,7 @@ export function ProductDetailPage() {
                                 </div>
                             )}
 
-                            {/* Storage info */}
-                            {product.freshness && (
-                                <div className="product-section">
-                                    <h3 className="product-section__title">
-                                        <svg viewBox="0 0 24 24" width="20" height="20">
-                                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z" fill="currentColor" />
-                                            <path d="M12 18c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.65 0-3 1.35-3 3s1.35 3 3 3 3-1.35 3-3-1.35-3-3-3z" fill="currentColor" />
-                                        </svg>
-                                        Oppbevaring
-                                    </h3>
-                                    <div className="product-section__content">
-                                        <p>{product.freshness.storageConditions}</p>
-                                        {product.freshness.bestBefore && (
-                                            <p className="best-before">
-                                                Best før: {new Date(product.freshness.bestBefore).toLocaleDateString('nb-NO')}
-                                            </p>
-                                        )}
-                                    </div>
-                                </div>
-                            )}
                         </div>
-
-                        {/* Tags */}
-                        {product.tags && product.tags.length > 0 && (
-                            <div className="product-detail__tags">
-                                {product.tags.map(tag => (
-                                    <span key={tag} className="product-tag">{tag}</span>
-                                ))}
-                            </div>
-                        )}
                     </div>
                 </div>
 

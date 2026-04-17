@@ -28,15 +28,19 @@
 .product-card__image-wrapper {
     position: relative;
     aspect-ratio: 1 / 1;
-    background-color: var(--color-bg);
+    background-color: #ffffff;
     border-radius: var(--radius-md) var(--radius-md) 0 0;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md);
 }
 
 .product-card__image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform var(--transition-normal);
 }
 
@@ -88,16 +92,23 @@
 .product-card__content {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--space-xs);
     padding: var(--space-md);
     padding-right: calc(var(--space-md) + 44px);
     /* Space for add button */
-    min-height: 100px;
+    min-height: 110px;
 }
 
 /* 
   TYPOGRAPHY HIERARCHY: Price -> Name -> Unit 
 */
+
+/* PRICING: Price and unit price */
+.product-card__pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
 
 /* PRICE: Big and bold */
 .product-card__price {
@@ -105,6 +116,13 @@
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
     line-height: var(--line-height-tight);
+}
+
+/* UNIT PRICE: Smaller, muted */
+.product-card__unit-price {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-normal);
 }
 
 /* NAME: Calm and readable, clamped to 2 lines */
@@ -118,6 +136,7 @@
     /* Enforce 2 lines of text to prevent height changes */
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -196,7 +215,6 @@
 
 /* Remove old/unused selectors to prevent side-effects */
 .product-card__category,
-.product-card__footer,
-.product-card__pricing {
+.product-card__footer {
     display: none;
 }
